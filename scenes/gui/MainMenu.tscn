@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/project/fonts/Old-Soviet.otf" type="DynamicFontData" id=1]
-[ext_resource path="res://scenes/gui/MainMenu.gd" type="Script" id=2]
+[ext_resource path="res://scenes/gui/MainMenu.cs" type="Script" id=2]
 [ext_resource path="res://scenes/gui/BGMenu.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/project/music/B004KO-НАША-CYBERRUSSIA.mp3" type="AudioStream" id=4]
 [ext_resource path="res://assets/project/csol team.png" type="Texture" id=5]
@@ -86,7 +86,10 @@ flat = true
 stream = ExtResource( 4 )
 autoplay = true
 
-[node name="TextCanvasLayer" type="CanvasLayer" parent="."]
+[node name="Node" type="Node" parent="."]
+
+[connection signal="pressed" from="CanvasLayer/MainMenuButtons/NewGameButton" to="." method="OnNewGameButtonPressed"]
+[connection signal="pressed" from="CanvasLayer/MainMenuButtons/QuitButton" to="." method="_on_QuitButton_pressed"]
 
 [node name="Sprite" type="Sprite" parent="TextCanvasLayer"]
 position = Vector2( 905, 551 )
