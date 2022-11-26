@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/person.png-7c52aaeb165a331a04282f0e3710ec7f.stex"
+path="res://.import/827a29a7b1121f9.png-cf9a6cb7191f35fc7e49824f0fd0b151.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Character/person.png"
-dest_files=[ "res://.import/person.png-7c52aaeb165a331a04282f0e3710ec7f.stex" ]
+source_file="res://assets/HUD/827a29a7b1121f9.png"
+dest_files=[ "res://.import/827a29a7b1121f9.png-cf9a6cb7191f35fc7e49824f0fd0b151.stex" ]
 
 [params]
 
