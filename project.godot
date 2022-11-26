@@ -14,6 +14,11 @@ config/name="DescribeOfRevenge"
 run/main_scene="res://scenes/gui/MainMenu.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+SaveSystem="*res://MainSystems/SaveSystem.cs"
+GameStats="*res://MainSystems/GameStats.cs"
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
