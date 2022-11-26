@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scenes/gui/Menu/CreditsMenu.gd" type="Script" id=1]
+[ext_resource path="res://assets/project/fonts/Old-Soviet.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/project/music/20 век фокс.mp3" type="AudioStream" id=3]
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 2 )
+
+[node name="GodotCredits" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 1023.0
+margin_bottom = 602.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="CreditsContainer" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 1026.0
+margin_bottom = 609.0
+
+[node name="Line" type="Label" parent="CreditsContainer"]
+anchor_right = 1.0
+margin_left = -2.0
+margin_top = 600.0
+margin_right = -2.0
+margin_bottom = 614.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
+text = "Credits line"
+align = 1
+
+[node name="NewGameButton" type="Button" parent="."]
+margin_left = 33.0
+margin_top = 527.0
+margin_right = 188.0
+margin_bottom = 552.0
+focus_neighbour_top = NodePath("../QuitButton")
+custom_colors/font_color_hover = Color( 1, 0, 0, 0.890196 )
+custom_fonts/font = SubResource( 1 )
+text = "Назад"
+flat = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+autoplay = true
+
+[connection signal="pressed" from="NewGameButton" to="." method="_on_NewGameButton_pressed"]

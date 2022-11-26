@@ -7,18 +7,18 @@ using System.Collections.Specialized;
 
 public class Inventory : Node
 {
-    public ObservableCollection<Item> Items { get; private set; }
+	public ObservableCollection<Item> Items { get; private set; }
 
-    public override void _Ready()
-    {
-        Items = new ObservableCollection<Item>();
-        Items.CollectionChanged += Items_CollectionChanged;
-    }
+	public override void _Ready()
+	{
+		Items = new ObservableCollection<Item>();
+		Items.CollectionChanged += Items_CollectionChanged;
+	}
 
-    [Signal] public delegate void InventoryChanged(Item[] item);
+	[Signal] public delegate void InventoryChanged(Item[] item);
 
-    private void Items_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-    {
-        EmitSignal(nameof(InventoryChanged), Items.ToArray());
-    }
+	private void Items_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+	{
+		EmitSignal(nameof(InventoryChanged), Items.ToArray());
+	}
 }
