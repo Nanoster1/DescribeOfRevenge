@@ -56,6 +56,8 @@ public class Character : KinematicBody2D
             direction = LastDirection.Up;
             timer.Stop();
             isCalm2 = false;
+            _play_jump_animation();
+
         }
 
         else if (Input.IsActionJustPressed("move_up") && direction == LastDirection.Up)
@@ -64,6 +66,7 @@ public class Character : KinematicBody2D
             direction = null;
             timer.Stop();
             isCalm2 = false;
+            _play_jump_animation();
         }
 
         else if (Input.IsActionJustPressed("move_down") && IsOnFloor())
@@ -78,7 +81,10 @@ public class Character : KinematicBody2D
         velocity = MoveAndSlide(velocity, new Vector2(0, -1));
         _play_animation(velocity);
     }
-
+    public void _play_jump_animation()
+    {
+        animatedSprite.Play("jump");
+    }
     public void _play_animation(Vector2 direction)
     {
         if (direction == Vector2.Zero && IsOnFloor())
@@ -92,6 +98,10 @@ public class Character : KinematicBody2D
                 animatedSprite.Play("calm");
             }
 
+        }
+        else if (direction.y >= 0)
+        {
+            animatedSprite.Play("down");
         }
     }
     protected override void Dispose(bool disposing)
