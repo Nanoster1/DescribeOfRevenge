@@ -14,6 +14,12 @@ config/name="DescribeOfRevenge"
 run/main_scene="res://scenes/test scene.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+SaveSystem="*res://MainSystems/SaveSystem.cs"
+GameStats="*res://MainSystems/GameStats.cs"
+LevelManager="*res://MainSystems/LevelManager.cs"
+
 [display]
 
 window/stretch/mode="2d"
