@@ -20,8 +20,12 @@ public class Character : KinematicBody2D
 
         };
         timer.AutoReset = false;
+        animatedSprite.Connect("animation_finished", this, "_finish");
     }
+    public void _finish()
+    {
 
+    }
 
     public override void _PhysicsProcess(float delta)
     {
@@ -76,7 +80,7 @@ public class Character : KinematicBody2D
             timer.Stop();
             isCalm2 = false;
         }
-
+        GD.Print(animatedSprite.Animation);
         velocity.y += gravity;
         velocity = MoveAndSlide(velocity, new Vector2(0, -1));
         _play_animation(velocity);
@@ -99,11 +103,16 @@ public class Character : KinematicBody2D
             }
 
         }
-        else if (direction.y >= 0)
+        else if (direction.y > 10)
         {
             animatedSprite.Play("down");
         }
+        else if (direction.y == 0)
+        {
+            animatedSprite.Play("run");
+        }
     }
+
     protected override void Dispose(bool disposing)
     {
         base.Dispose(disposing);

@@ -1,10 +1,11 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://Character/CharacterSystem.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Character/jump.png" type="Texture" id=2]
 [ext_resource path="res://Character/Character.cs" type="Script" id=3]
 [ext_resource path="res://Character/state.png" type="Texture" id=4]
 [ext_resource path="res://Character/state2.png" type="Texture" id=5]
+[ext_resource path="res://Character/run.png" type="Texture" id=6]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 7.63243
@@ -90,27 +91,62 @@ region = Rect2( 64, 64, 64, 64 )
 atlas = ExtResource( 2 )
 region = Rect2( 128, 64, 64, 64 )
 
+[sub_resource type="AtlasTexture" id=29]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 0, 128, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=30]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 64, 128, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=31]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 128, 128, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=32]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 0, 192, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=33]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 64, 192, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=34]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 128, 192, 64, 64 )
+
 [sub_resource type="SpriteFrames" id=12]
 animations = [ {
 "frames": [ SubResource( 13 ), SubResource( 17 ), SubResource( 15 ), SubResource( 17 ), SubResource( 16 ), SubResource( 17 ) ],
 "loop": true,
 "name": "calm",
-"speed": 3.0
+"speed": 6.0
 }, {
 "frames": [ SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 19 ), SubResource( 21 ), SubResource( 19 ) ],
 "loop": true,
 "name": "calm2",
-"speed": 3.0
+"speed": 6.0
 }, {
 "frames": [ SubResource( 26 ), SubResource( 27 ), SubResource( 28 ) ],
 "loop": false,
 "name": "down",
-"speed": 3.0
+"speed": 12.0
 }, {
 "frames": [ SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 24 ), SubResource( 23 ), SubResource( 22 ) ],
-"loop": true,
+"loop": false,
 "name": "jump",
-"speed": 5.0
+"speed": 6.0
+}, {
+"frames": [ SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ) ],
+"loop": true,
+"name": "run",
+"speed": 12.0
 } ]
 
 [node name="Character" type="KinematicBody2D"]
@@ -164,4 +200,4 @@ shape = SubResource( 7 )
 
 [node name="AnimatedSprites" type="AnimatedSprite" parent="."]
 frames = SubResource( 12 )
-animation = "down"
+animation = "run"
