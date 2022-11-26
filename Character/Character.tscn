@@ -1,7 +1,6 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Character/CharacterSystem.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Character/person.png" type="Texture" id=2]
 [ext_resource path="res://Character/Character.cs" type="Script" id=3]
 [ext_resource path="res://Character/state.png" type="Texture" id=4]
 [ext_resource path="res://Character/state2.png" type="Texture" id=5]
@@ -46,14 +45,6 @@ region = Rect2( 64, 0, 64, 64 )
 atlas = ExtResource( 4 )
 region = Rect2( 128, 0, 64, 64 )
 
-[sub_resource type="SpriteFrames" id=12]
-animations = [ {
-"frames": [ SubResource( 13 ), SubResource( 17 ), SubResource( 15 ), SubResource( 17 ), SubResource( 16 ), SubResource( 17 ) ],
-"loop": true,
-"name": "default",
-"speed": 3.0
-} ]
-
 [sub_resource type="AtlasTexture" id=18]
 atlas = ExtResource( 4 )
 region = Rect2( 192, 0, 64, 64 )
@@ -70,11 +61,16 @@ region = Rect2( 256, 0, 64, 64 )
 atlas = ExtResource( 4 )
 region = Rect2( 320, 0, 64, 64 )
 
-[sub_resource type="SpriteFrames" id=22]
+[sub_resource type="SpriteFrames" id=12]
 animations = [ {
+"frames": [ SubResource( 13 ), SubResource( 17 ), SubResource( 15 ), SubResource( 17 ), SubResource( 16 ), SubResource( 17 ) ],
+"loop": true,
+"name": "calm",
+"speed": 3.0
+}, {
 "frames": [ SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 19 ), SubResource( 21 ), SubResource( 19 ) ],
 "loop": true,
-"name": "default",
+"name": "calm2",
 "speed": 3.0
 } ]
 
@@ -88,11 +84,7 @@ z_index = 2
 shape = SubResource( 1 )
 
 [node name="CharacterSystem" parent="." instance=ExtResource( 1 )]
-StartSpeed = 400
-
-[node name="Person" type="Sprite" parent="."]
-visible = false
-texture = ExtResource( 2 )
+StartSpeed = 300
 
 [node name="RightLag" type="CollisionShape2D" parent="."]
 position = Vector2( 6, 11 )
@@ -131,12 +123,7 @@ position = Vector2( -12, -13 )
 rotation = 0.244346
 shape = SubResource( 7 )
 
-[node name="Calm" type="AnimatedSprite" parent="."]
-visible = false
+[node name="AnimatedSprites" type="AnimatedSprite" parent="."]
 frames = SubResource( 12 )
-frame = 4
-
-[node name="Calm2" type="AnimatedSprite" parent="."]
-frames = SubResource( 22 )
-frame = 1
-playing = true
+animation = "calm2"
+frame = 2
