@@ -1,23 +1,31 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/project/fonts/Old-Soviet.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://scenes/gui/MainMenu.gd" type="Script" id=2]
 [ext_resource path="res://scenes/gui/BGMenu.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/project/music/B004KO-НАША-CYBERRUSSIA.mp3" type="AudioStream" id=4]
+[ext_resource path="res://assets/project/csol team.png" type="Texture" id=5]
+[ext_resource path="res://assets/project/fonts/KHTitle.otf" type="DynamicFontData" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 56
+outline_size = 7
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 6 )
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
 
-[node name="BGMenu" parent="." instance=ExtResource( 3 )]
+[node name="Node2D" parent="." instance=ExtResource( 3 )]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="ButtonCanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="MainMenuButtons" type="VBoxContainer" parent="CanvasLayer"]
+[node name="MainMenuButtons" type="VBoxContainer" parent="ButtonCanvasLayer"]
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 47.0
@@ -27,43 +35,49 @@ margin_bottom = -7.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="NewGameButton" type="Button" parent="CanvasLayer/MainMenuButtons"]
+[node name="NewGameButton" type="Button" parent="ButtonCanvasLayer/MainMenuButtons"]
 margin_right = 155.0
 margin_bottom = 25.0
 focus_neighbour_top = NodePath("../QuitButton")
+custom_colors/font_color_hover = Color( 0, 0, 0, 0.890196 )
 custom_fonts/font = SubResource( 1 )
 text = "Новая игра"
 flat = true
 
-[node name="LoadGameButton" type="Button" parent="CanvasLayer/MainMenuButtons"]
+[node name="LoadGameButton" type="Button" parent="ButtonCanvasLayer/MainMenuButtons"]
 margin_top = 29.0
 margin_right = 155.0
 margin_bottom = 54.0
+custom_colors/font_color_hover = Color( 0, 0, 0, 0.890196 )
 custom_fonts/font = SubResource( 1 )
 text = "Загрузить игру"
 flat = true
 
-[node name="OptionsButton" type="Button" parent="CanvasLayer/MainMenuButtons"]
+[node name="OptionsButton" type="Button" parent="ButtonCanvasLayer/MainMenuButtons"]
 margin_top = 58.0
 margin_right = 155.0
 margin_bottom = 83.0
+custom_colors/font_color_hover = Color( 0, 0, 0, 0.890196 )
 custom_fonts/font = SubResource( 1 )
 text = "Настройки"
 flat = true
 
-[node name="AboutButton" type="Button" parent="CanvasLayer/MainMenuButtons"]
+[node name="AboutButton" type="Button" parent="ButtonCanvasLayer/MainMenuButtons"]
 margin_top = 87.0
 margin_right = 155.0
 margin_bottom = 112.0
+custom_colors/font_color_hover = Color( 0, 0, 0, 0.890196 )
 custom_fonts/font = SubResource( 1 )
 text = "О нас"
 flat = true
 
-[node name="QuitButton" type="Button" parent="CanvasLayer/MainMenuButtons"]
+[node name="QuitButton" type="Button" parent="ButtonCanvasLayer/MainMenuButtons"]
 margin_top = 116.0
 margin_right = 155.0
 margin_bottom = 141.0
 focus_neighbour_bottom = NodePath("../NewGameButton")
+custom_colors/font_color = Color( 0.627451, 0.0745098, 0.0745098, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 0.890196 )
 custom_fonts/font = SubResource( 1 )
 text = "Выход"
 flat = true
@@ -72,4 +86,28 @@ flat = true
 stream = ExtResource( 4 )
 autoplay = true
 
-[connection signal="pressed" from="CanvasLayer/MainMenuButtons/QuitButton" to="." method="_on_QuitButton_pressed"]
+[node name="TextCanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Sprite" type="Sprite" parent="TextCanvasLayer"]
+position = Vector2( 905, 551 )
+scale = Vector2( 0.195609, 0.209641 )
+texture = ExtResource( 5 )
+
+[node name="Label" type="Label" parent="TextCanvasLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -337.0
+margin_top = -39.0
+margin_right = 337.0
+margin_bottom = 39.0
+custom_colors/font_color = Color( 0.788235, 0, 0, 1 )
+custom_constants/shadow_offset_x = 6
+custom_constants/line_spacing = 4
+custom_constants/shadow_offset_y = 5
+custom_constants/shadow_as_outline = 6
+custom_fonts/font = SubResource( 2 )
+text = "Describe Of Revenge"
+
+[connection signal="pressed" from="ButtonCanvasLayer/MainMenuButtons/QuitButton" to="." method="_on_QuitButton_pressed"]
