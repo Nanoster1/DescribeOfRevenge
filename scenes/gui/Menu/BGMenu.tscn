@@ -5,7 +5,7 @@
 [ext_resource path="res://assets/project/bgmenu/2.png" type="Texture" id=3]
 [ext_resource path="res://assets/project/bgmenu/4.png" type="Texture" id=4]
 [ext_resource path="res://assets/project/bgmenu/5.png" type="Texture" id=5]
-[ext_resource path="res://scenes/gui/BGCamera2D.gd" type="Script" id=6]
+[ext_resource path="res://scenes/gui/Menu/BGCamera2D.gd" type="Script" id=6]
 
 [sub_resource type="ParticlesMaterial" id=1]
 emission_shape = 2
