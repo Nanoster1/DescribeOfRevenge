@@ -172,8 +172,8 @@ public class Character : KinematicBody2D
 }
 enum LastDirection
 {
-    Up,
-    Down,
-    Left,
-    Right
+	Up,
+	Down,
+	Left,
+	Right
 }

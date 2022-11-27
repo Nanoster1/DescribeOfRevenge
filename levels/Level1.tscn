@@ -8,6 +8,7 @@
 [ext_resource path="res://Character/Enemy/Enemy.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Character/Character.tscn" type="PackedScene" id=7]
 [ext_resource path="res://levels/Enemies.gd" type="Script" id=8]
+[ext_resource path="res://scenes/gui/Pause/PauseMenu.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 129, 10 )

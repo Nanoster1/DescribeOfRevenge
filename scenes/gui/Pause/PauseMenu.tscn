@@ -1,0 +1,158 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://assets/project/fonts/Old-Soviet.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://scenes/gui/Pause/PauseMenu.gd" type="Script" id=2]
+[ext_resource path="res://assets/HUD/gdb-keyboard-1a.png" type="Texture" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 25
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 40
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 22
+font_data = ExtResource( 1 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 302.942, 78.0377, 50.188, 36.2259 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 22
+font_data = ExtResource( 1 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 99.2127, 96.238, 105.63, 17.1418 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 22
+font_data = ExtResource( 1 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 111.863, 63.4096, 16.1943, 17.1144 )
+
+[node name="PauseMenu" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.85098 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="FloodTimer" type="Timer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 30.0
+margin_top = -316.0
+margin_right = 184.0
+margin_bottom = -181.0
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+margin_right = 184.0
+margin_bottom = 36.0
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Продолжить"
+flat = true
+align = 0
+
+[node name="Button2" type="Button" parent="VBoxContainer"]
+margin_top = 40.0
+margin_right = 184.0
+margin_bottom = 76.0
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Параметры"
+flat = true
+align = 0
+
+[node name="Button3" type="Button" parent="VBoxContainer"]
+margin_top = 80.0
+margin_right = 184.0
+margin_bottom = 116.0
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Выход"
+flat = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -320.0
+margin_top = -316.0
+margin_right = -28.0
+margin_bottom = -176.0
+
+[node name="Label" type="Label" parent="VBoxContainer2"]
+margin_right = 292.0
+margin_bottom = 47.0
+custom_colors/font_color = Color( 0.643137, 0.0313726, 0.0313726, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "Управление"
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer2"]
+margin_top = 51.0
+margin_right = 292.0
+margin_bottom = 147.0
+columns = 2
+
+[node name="Label" type="Label" parent="VBoxContainer2/GridContainer"]
+margin_top = 5.0
+margin_right = 129.0
+margin_bottom = 31.0
+custom_fonts/font = SubResource( 3 )
+text = "Движение"
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer2/GridContainer"]
+margin_left = 133.0
+margin_right = 238.0
+margin_bottom = 36.0
+texture = SubResource( 4 )
+
+[node name="Label2" type="Label" parent="VBoxContainer2/GridContainer"]
+margin_top = 40.0
+margin_right = 129.0
+margin_bottom = 66.0
+custom_fonts/font = SubResource( 5 )
+text = "Прыжок"
+
+[node name="TextureRect2" type="TextureRect" parent="VBoxContainer2/GridContainer"]
+margin_left = 133.0
+margin_top = 40.0
+margin_right = 238.0
+margin_bottom = 66.0
+texture = SubResource( 6 )
+
+[node name="Label3" type="Label" parent="VBoxContainer2/GridContainer"]
+margin_top = 70.0
+margin_right = 129.0
+margin_bottom = 96.0
+custom_fonts/font = SubResource( 7 )
+text = "Удар"
+
+[node name="TextureRect3" type="TextureRect" parent="VBoxContainer2/GridContainer"]
+margin_left = 133.0
+margin_top = 70.0
+margin_right = 238.0
+margin_bottom = 96.0
+texture = SubResource( 8 )
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button3" to="." method="_on_Button3_pressed"]
