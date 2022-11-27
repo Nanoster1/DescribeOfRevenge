@@ -18,14 +18,14 @@ public class Character : KinematicBody2D
 		{
 			isCalm2 = true;
 
-        };
-        timer.AutoReset = false;
-        animatedSprite.Connect("animation_finished", this, "_finish");
-    }
-    public void _finish()
-    {
+		};
+		timer.AutoReset = false;
+		animatedSprite.Connect("animation_finished", this, "_finish");
+	}
+	public void _finish()
+	{
 
-    }
+	}
 
 	public override void _PhysicsProcess(float delta)
 	{
@@ -73,51 +73,51 @@ public class Character : KinematicBody2D
 			_play_jump_animation();
 		}
 
-        else if (Input.IsActionJustPressed("move_down") && IsOnFloor())
-        {
-            velocity.y = 1;
-            direction = LastDirection.Down;
-            timer.Stop();
-            isCalm2 = false;
-        }
-        GD.Print(animatedSprite.Animation);
-        velocity.y += gravity;
-        velocity = MoveAndSlide(velocity, new Vector2(0, -1));
-        _play_animation(velocity);
-    }
-    public void _play_jump_animation()
-    {
-        animatedSprite.Play("jump");
-    }
-    public void _play_animation(Vector2 direction)
-    {
-        if (direction == Vector2.Zero && IsOnFloor())
-        {
-            if (isCalm2)
-            {
-                animatedSprite.Play("calm2");
-            }
-            else
-            {
-                animatedSprite.Play("calm");
-            }
+		else if (Input.IsActionJustPressed("move_down") && IsOnFloor())
+		{
+			velocity.y = 1;
+			direction = LastDirection.Down;
+			timer.Stop();
+			isCalm2 = false;
+		}
+		GD.Print(animatedSprite.Animation);
+		velocity.y += gravity;
+		velocity = MoveAndSlide(velocity, new Vector2(0, -1));
+		_play_animation(velocity);
+	}
+	public void _play_jump_animation()
+	{
+		animatedSprite.Play("jump");
+	}
+	public void _play_animation(Vector2 direction)
+	{
+		if (direction == Vector2.Zero && IsOnFloor())
+		{
+			if (isCalm2)
+			{
+				animatedSprite.Play("calm2");
+			}
+			else
+			{
+				animatedSprite.Play("calm");
+			}
 
-        }
-        else if (direction.y > 10)
-        {
-            animatedSprite.Play("down");
-        }
-        else if (direction.y == 0)
-        {
-            animatedSprite.Play("run");
-        }
-    }
+		}
+		else if (direction.y > 10)
+		{
+			animatedSprite.Play("down");
+		}
+		else if (direction.y == 0)
+		{
+			animatedSprite.Play("run");
+		}
+	}
 
-    protected override void Dispose(bool disposing)
-    {
-        base.Dispose(disposing);
-        timer.Dispose();
-    }
+	protected override void Dispose(bool disposing)
+	{
+		base.Dispose(disposing);
+		timer.Dispose();
+	}
 }
 enum LastDirection
 {

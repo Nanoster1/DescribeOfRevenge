@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=2]
+[gd_scene load_steps=74 format=2]
 
 [ext_resource path="res://Character/Enemy/Run.png" type="Texture" id=1]
 [ext_resource path="res://Character/Enemy/Jump.png" type="Texture" id=2]
@@ -11,46 +11,12 @@
 [ext_resource path="res://Character/Enemy/Fall.png" type="Texture" id=9]
 [ext_resource path="res://Character/Enemy/Death.png" type="Texture" id=10]
 [ext_resource path="res://Character/Enemy/Take Hit.png" type="Texture" id=11]
+[ext_resource path="res://Scenes/Enemies/DeathAnimation.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Character/Enemy/Enemy.gd" type="Script" id=13]
 
-[sub_resource type="Gradient" id=4]
-offsets = PoolRealArray( 0, 0.251923, 0.505882, 0.823077, 1 )
-colors = PoolColorArray( 1, 0, 0, 1, 1, 0.339502, 0.19, 1, 0.969238, 0.611948, 0.0613851, 1, 1, 0.944603, 0.153333, 1, 0.984896, 1, 0.466667, 1 )
-
-[sub_resource type="GradientTexture" id=5]
-gradient = SubResource( 4 )
-
-[sub_resource type="Curve" id=2]
-min_value = -200.0
-max_value = 400.0
-_data = [ Vector2( 0.00925927, 400 ), 0.0, 0.0, 0, 0, Vector2( 0.175926, 400 ), 0.0, 0.0, 0, 0, Vector2( 0.407407, 0.454559 ), -368.182, -368.182, 0, 0, Vector2( 0.990741, 11.3636 ), 0.0, 0.0, 0, 0 ]
-
-[sub_resource type="CurveTexture" id=3]
-curve = SubResource( 2 )
-
-[sub_resource type="Curve" id=6]
-max_value = 2.5
-_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
-
-[sub_resource type="CurveTexture" id=7]
-curve = SubResource( 6 )
-
-[sub_resource type="ParticlesMaterial" id=1]
-emission_shape = 1
-emission_sphere_radius = 2.2
-flag_disable_z = true
-spread = 10.91
-gravity = Vector3( -20, 2000, 0 )
-initial_velocity = 50.0
-initial_velocity_random = 0.27
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-linear_accel = 100.0
-linear_accel_random = 0.2
-linear_accel_curve = SubResource( 3 )
-scale = 2.0
-scale_random = 1.0
-scale_curve = SubResource( 7 )
-color_ramp = SubResource( 5 )
+[sub_resource type="CapsuleShape2D" id=67]
+radius = 11.7405
+height = 34.087
 
 [sub_resource type="AtlasTexture" id=59]
 flags = 4
@@ -305,7 +271,7 @@ region = Rect2( 1050, 0, 150, 128 )
 [sub_resource type="SpriteFrames" id=42]
 animations = [ {
 "frames": [ SubResource( 59 ), SubResource( 60 ), SubResource( 61 ), SubResource( 62 ) ],
-"loop": false,
+"loop": true,
 "name": "Atack1",
 "speed": 4.0
 }, {
@@ -360,12 +326,77 @@ animations = [ {
 "speed": 8.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=67]
-radius = 13.0
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 0, 0.251923, 0.505882, 0.823077, 1 )
+colors = PoolColorArray( 1, 0, 0, 1, 1, 0.339502, 0.19, 1, 0.969238, 0.611948, 0.0613851, 1, 1, 0.944603, 0.153333, 1, 0.984896, 1, 0.466667, 1 )
+
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
+
+[sub_resource type="Curve" id=2]
+min_value = -200.0
+max_value = 400.0
+_data = [ Vector2( 0.00925927, 400 ), 0.0, 0.0, 0, 0, Vector2( 0.175926, 400 ), 0.0, 0.0, 0, 0, Vector2( 0.407407, 0.454559 ), -368.182, -368.182, 0, 0, Vector2( 0.990741, 11.3636 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=3]
+curve = SubResource( 2 )
+
+[sub_resource type="Curve" id=6]
+max_value = 2.5
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=7]
+curve = SubResource( 6 )
+
+[sub_resource type="ParticlesMaterial" id=1]
+emission_shape = 1
+emission_sphere_radius = 2.2
+flag_disable_z = true
+spread = 10.91
+gravity = Vector3( -20, 2000, 0 )
+initial_velocity = 50.0
+initial_velocity_random = 0.27
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 100.0
+linear_accel_random = 0.2
+linear_accel_curve = SubResource( 3 )
+scale = 2.0
+scale_random = 1.0
+scale_curve = SubResource( 7 )
+color_ramp = SubResource( 5 )
+
+[sub_resource type="CapsuleShape2D" id=68]
+radius = 8.0
+height = 34.0
 
 [node name="Enemy" type="KinematicBody2D"]
+script = ExtResource( 13 )
 
-[node name="Particles2D" type="Particles2D" parent="."]
+[node name="CollideWithPlayer" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollideWithPlayer"]
+position = Vector2( 0, 8.784 )
+shape = SubResource( 67 )
+
+[node name="Body" type="Position2D" parent="."]
+
+[node name="DeathAnimation" parent="Body" instance=ExtResource( 12 )]
+visible = false
+position = Vector2( 0, 8 )
+
+[node name="FireballPos" type="Position2D" parent="Body"]
+position = Vector2( -16, 5 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Body"]
+frames = SubResource( 42 )
+animation = "Atack4"
+frame = 3
+playing = true
+
+[node name="Particles2D" type="Particles2D" parent="Body"]
 emitting = false
 amount = 50
 lifetime = 0.2
@@ -374,12 +405,14 @@ explosiveness = 0.5
 visibility_rect = Rect2( 0, 0, 0, 0 )
 process_material = SubResource( 1 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 42 )
-animation = "Atack4"
-frame = 3
-playing = true
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 12 )
-shape = SubResource( 67 )
+shape = SubResource( 68 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="StateMachine" type="Node" parent="."]
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true

@@ -7,12 +7,25 @@
 [ext_resource path="res://Scenes/Enemies/Fill/HellBeastFireball.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Enemies/DeathAnimation.tscn" type="PackedScene" id=14]
 
-
-
-
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 11.7405
 height = 34.087
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 4 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 4 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 4 )
+region = Rect2( 192, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 2 )
@@ -38,33 +51,17 @@ region = Rect2( 256, 0, 64, 64 )
 atlas = ExtResource( 2 )
 region = Rect2( 320, 0, 64, 64 )
 
-[sub_resource type="AtlasTexture" id=8]
-atlas = ExtResource( 4 )
-region = Rect2( 0, 0, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=9]
-atlas = ExtResource( 4 )
-region = Rect2( 64, 0, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=10]
-atlas = ExtResource( 4 )
-region = Rect2( 128, 0, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=11]
-atlas = ExtResource( 4 )
-region = Rect2( 192, 0, 64, 64 )
-
 [sub_resource type="SpriteFrames" id=12]
 animations = [ {
-"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ) ],
-"loop": true,
-"name": "idle",
-"speed": 7.0
-}, {
 "frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
 "loop": true,
 "name": "attack",
 "speed": 5.0
+}, {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ) ],
+"loop": true,
+"name": "idle",
+"speed": 7.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=13]
@@ -88,7 +85,7 @@ shape = SubResource( 1 )
 [node name="Sprite" parent="Body" index="0"]
 frames = SubResource( 12 )
 animation = "idle"
-frame = 4
+frame = 5
 playing = true
 
 [node name="DeathAnimation" parent="Body" index="1" instance=ExtResource( 14 )]
@@ -105,6 +102,7 @@ shape = SubResource( 13 )
 [node name="AttackTimer" type="Timer" parent="." index="5"]
 wait_time = 3.0
 autostart = true
+
 [connection signal="body_entered" from="CollideWithPlayer" to="." method="_on_CollideWithPlayer_body_entered"]
 [connection signal="animation_finished" from="Body/Sprite" to="." method="_on_Sprite_animation_finished"]
 [connection signal="frame_changed" from="Body/Sprite" to="." method="_on_Sprite_frame_changed"]
