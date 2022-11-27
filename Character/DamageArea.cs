@@ -14,12 +14,28 @@ public class DamageArea : Area2D
             foreach (var body in GetOverlappingBodies())
             {
                 var enemy = body as KinematicBody2D;
-                if (enemy != null)
+                if (enemy != null && enemy.Name.Contains("Enemy"))
                 {
+                    var rnd = new System.Random();
                     enemy.GetParent().RemoveChild(enemy);
+                    //GetParent().GetNode<AudioStreamPlayer2D>("Mother").Playing = true;
+                    var value = rnd.Next(1, 4);
+                    if (value == 1)
+                    {
+                        GetParent().GetNode<AudioStreamPlayer2D>("Mother").Play();
+                    }
+                    else if (value == 2)
+                    {
+                        GetParent().GetNode<AudioStreamPlayer2D>("Mother2").Play();
+                    }
+                    else
+                    {
+                        GetParent().GetNode<AudioStreamPlayer2D>("Get").Play();
+                    }
                 }
             }
             damaged = true;
+
         }
     }
     public void _on_Timer_timeout()

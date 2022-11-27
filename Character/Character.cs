@@ -2,46 +2,46 @@ using Godot;
 
 public class Character : KinematicBody2D
 {
-	public CharacterSystem CharSystem { get; private set; }
-	public AnimatedSprite animatedSprite { get; private set; }
-	private const float gravity = 15f;
-	private const float jumpForce = 350;
-	private Vector2 velocity = Vector2.Zero;
-	private LastDirection? direction = null;
-	private System.Timers.Timer timer = new System.Timers.Timer(4000);
-	private bool isCalm2 = false;
-	private bool isDamage = false;
-	public override void _Ready()
-	{
-		animatedSprite = GetNode<AnimatedSprite>("AnimatedSprites");
-		CharSystem = GetNode<CharacterSystem>(nameof(CharacterSystem));
-		timer.Elapsed += (x, y) =>
-		{
-			isCalm2 = true;
+    public CharacterSystem CharSystem { get; private set; }
+    public AnimatedSprite animatedSprite { get; private set; }
+    private const float gravity = 15f;
+    private const float jumpForce = 350;
+    private Vector2 velocity = Vector2.Zero;
+    private LastDirection? direction = null;
+    private System.Timers.Timer timer = new System.Timers.Timer(4000);
+    private bool isCalm2 = false;
+    private bool isDamage = false;
+    public override void _Ready()
+    {
+        animatedSprite = GetNode<AnimatedSprite>("AnimatedSprites");
+        CharSystem = GetNode<CharacterSystem>(nameof(CharacterSystem));
+        timer.Elapsed += (x, y) =>
+        {
+            isCalm2 = true;
 
-		};
-		timer.AutoReset = false;
-		animatedSprite.Connect("animation_finished", this, "_finish");
-	}
-	public void _finish()
-	{
-		if (animatedSprite.Animation == "Attack")
-		{
-			isDamage = false;
-			GetNode<AudioStreamPlayer2D>("Attack").Playing = false;
-		}
-	}
+        };
+        timer.AutoReset = false;
+        animatedSprite.Connect("animation_finished", this, "_finish");
+    }
+    public void _finish()
+    {
+        if (animatedSprite.Animation == "Attack")
+        {
+            isDamage = false;
+            GetNode<AudioStreamPlayer2D>("Attack").Playing = false;
+        }
+    }
 
-	public override void _PhysicsProcess(float delta)
-	{
+    public override void _PhysicsProcess(float delta)
+    {
 
-		if (Input.IsActionPressed("move_left"))
-		{
-			velocity.x = -CharSystem.Speed;
-			animatedSprite.FlipH = true;
-			timer.Stop();
-			isCalm2 = false;
-		}
+        if (Input.IsActionPressed("move_left"))
+        {
+            velocity.x = -CharSystem.Speed;
+            animatedSprite.FlipH = true;
+            timer.Stop();
+            isCalm2 = false;
+        }
 
         else if (Input.IsActionPressed("move_right"))
         {
@@ -112,14 +112,21 @@ public class Character : KinematicBody2D
             _play_animation(velocity);
 
         }
-        GetNode<AudioStreamPlayer2D>("Run").Playing = true;
+        if (!GetNode<AudioStreamPlayer2D>("Run").Playing)
+        {
+            GetNode<AudioStreamPlayer2D>("Run").Playing = true;
+        }
+
         velocity.y += gravity;
         velocity = MoveAndSlide(velocity, new Vector2(0, -1));
     }
     public void _play_jump_animation()
     {
         if (!isDamage)
+        {
             animatedSprite.Play("jump");
+            GetNode<AudioStreamPlayer2D>("Run").Playing = false;
+        }
     }
     public void _play_animation(Vector2 direction)
     {
@@ -135,19 +142,25 @@ public class Character : KinematicBody2D
                 {
                     animatedSprite.Play("calm");
                 }
+                GetNode<AudioStreamPlayer2D>("Run").Playing = false;
             }
             else if (direction.y > 10)
             {
                 animatedSprite.Play("down");
+                GetNode<AudioStreamPlayer2D>("Run").Playing = false;
             }
             else if (direction.y == 0)
             {
                 animatedSprite.Play("run");
+                if (!GetNode<AudioStreamPlayer2D>("Run").Playing)
+                {
+                    GetNode<AudioStreamPlayer2D>("Run").Playing = true;
+                }
 
             }
         }
 
-	}
+    }
 
     protected override void Dispose(bool disposing)
     {
