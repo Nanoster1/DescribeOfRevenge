@@ -8,7 +8,6 @@
 [ext_resource path="res://Character/Enemy/Enemy.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Character/Character.tscn" type="PackedScene" id=7]
 [ext_resource path="res://levels/Enemies.gd" type="Script" id=8]
-[ext_resource path="res://Character/instructor.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/gui/Pause/PauseMenu.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -123,7 +122,12 @@ position = Vector2( 2599.75, 215 )
 shape = SubResource( 3 )
 
 [node name="Instructor" parent="." instance=ExtResource( 9 )]
-position = Vector2( 575, 280 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource( 9 )]
+visible = false
 
 [connection signal="health_depleted" from="Enemies/Enemy" to="." method="_on_Enemy_health_depleted"]
 [connection signal="health_depleted" from="Enemies/Enemy2" to="." method="_on_Enemy_health_depleted"]

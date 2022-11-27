@@ -377,7 +377,7 @@ script = ExtResource( 13 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 42 )
 animation = "Atack1"
-frame = 3
+frame = 2
 playing = true
 
 [node name="Particles2D" type="Particles2D" parent="."]
