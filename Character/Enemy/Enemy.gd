@@ -1,45 +1,61 @@
 extends KinematicBody2D
 
-export (PackedScene) var fireball_scene
+var is_moving_right = true
 
-var contact_damage = 1
-var life = 1
+var gravity = 9.8
+var velocity = Vector2(0, 0)
 
-func _on_CollideWithPlayer_body_entered(body):
-	var damage_direction = -1 if body.global_position.x < self.global_position.x else 1
-	body.damage(contact_damage, damage_direction, self)
+export var speed = 64
 
-func damage(quantity, _damage_dealer):
-	life -= quantity
-	if life <= 0:
-		die()
+func _ready():
+	$AnimatedSprite.play("run")
+
+func _process(delta):
+	attack_frame()
 	
-func die():
-	set_physics_process(false)
-	$CollisionShape2D.queue_free()
-	$CollideWithPlayer/CollisionShape2D.queue_free()
-	$AttackTimer.queue_free()
-	$Body/Sprite.hide()
-	$Body/DeathAnimation.show()
-	$Body/DeathAnimation.play("death")
-	yield($Body/DeathAnimation,"animation_finished")
-	queue_free()
+	move_character()
+	detect_turn_around()
+	
+func move_character():
+	velocity.x = speed if is_moving_right else -speed
+	velocity.y += gravity
+	print(velocity.x)
+	
+	velocity = move_and_slide(velocity, Vector2.UP)
+	
+func detect_turn_around():
+	if not $RayCast2D.is_colliding() and is_on_floor():
+		is_moving_right = !is_moving_right
+		scale.x = -scale.x
+		
+func hit():
+	$AttackDetector.monitoring = true
+	
+func end_of_hit():
+	$AttackDetector.monitoring = false
+	
+func start_walk(): 
+	$AnimatedSprite.play("run")
+	
+func attack_frame():
+	if $AnimatedSprite.animation == "Atack1":
+		var number_frame = $AnimatedSprite.frame
+		if number_frame in [0, 1]:
+			return
+		match number_frame:
+			2: hit()
+			3:
+				end_of_hit()
+				start_walk()
+
+func _on_PlayerDetector_body_entered(body):
+	$AnimatedSprite.play("Atack1")
+
+func _on_AttackDetector_body_entered(body):
+	get_tree().reload_current_scene()
 
 
-func _on_AttackTimer_timeout():
-	$Body/Sprite.play("attack")
-
-func _on_Sprite_animation_finished():
-	if $Body/Sprite.animation == 'Attack1':
-		$Body/Sprite.play("Init")
-
-
-func _on_Sprite_frame_changed():
-	if $Body/Sprite.animation == 'Attack1':
-		if $Body/Sprite.frame == 3 and $Body/Sprite.visible:
-			var attack = fireball_scene.instance()
-			attack.global_position = $Body/FireballPos.global_position
-			if self.scale.x == -1:
-				attack.direction = Vector2.RIGHT
-				attack.scale.x = self.scale.x
-			get_parent().add_child(attack)
+func _on_PlayerDetector2_body_entered(body):
+	is_moving_right = !is_moving_right
+	scale.x = -scale.x
+	$AnimatedSprite.play("Atack1")
