@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+signal health_depleted(health)
+
 var is_moving_right = true
 
 var gravity = 9.8
@@ -53,7 +55,8 @@ func _on_PlayerDetector_body_entered(body):
 	$AnimatedSprite.play(rnd_attack)
 
 func _on_AttackDetector_body_entered(body):
-	get_tree().reload_current_scene()
+	emit_signal("health_depleted", 100)
+	
 
 
 func _on_PlayerDetector2_body_entered(body):

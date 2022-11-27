@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=54 format=2]
 
 [ext_resource path="res://Character/CharacterSystem.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Character/jump.png" type="Texture" id=2]
@@ -12,6 +12,9 @@
 [ext_resource path="res://assets/Audios/mother.mp3" type="AudioStream" id=10]
 [ext_resource path="res://assets/Audios/mother2.mp3" type="AudioStream" id=11]
 [ext_resource path="res://assets/Audios/get.mp3" type="AudioStream" id=12]
+[ext_resource path="res://Character/челыцвапр.png" type="Texture" id=13]
+[ext_resource path="res://assets/Audios/мама-я-иду.mp3" type="AudioStream" id=14]
+[ext_resource path="res://assets/Audios/смерть.mp3" type="AudioStream" id=15]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 7.63243
@@ -56,6 +59,26 @@ region = Rect2( 448, 92, 128, 128 )
 [sub_resource type="AtlasTexture" id=39]
 atlas = ExtResource( 7 )
 region = Rect2( 288, 192, 128, 64 )
+
+[sub_resource type="AtlasTexture" id=42]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 64, 256, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=43]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 128, 256, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=44]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 192, 256, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=45]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 256, 256, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=13]
 atlas = ExtResource( 4 )
@@ -152,6 +175,11 @@ animations = [ {
 "name": "Attack",
 "speed": 12.0
 }, {
+"frames": [ SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ) ],
+"loop": false,
+"name": "Death",
+"speed": 6.0
+}, {
 "frames": [ SubResource( 13 ), SubResource( 17 ), SubResource( 15 ), SubResource( 17 ), SubResource( 16 ), SubResource( 17 ) ],
 "loop": true,
 "name": "calm",
@@ -234,9 +262,7 @@ shape = SubResource( 7 )
 
 [node name="AnimatedSprites" type="AnimatedSprite" parent="."]
 frames = SubResource( 12 )
-animation = "Attack"
-frame = 3
-playing = true
+animation = "calm2"
 
 [node name="Attack" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 8 )
@@ -255,3 +281,9 @@ stream = ExtResource( 11 )
 
 [node name="Get" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 12 )
+
+[node name="GoToMother" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 14 )
+
+[node name="Die" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 15 )

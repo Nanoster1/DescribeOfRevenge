@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public class CharacterSystem : Node
 {
@@ -69,7 +68,7 @@ public class CharacterSystem : Node
 
     public override void _Ready()
     {
-        Health = 50;
+        Health = MaxHealth;
         Energy = MaxEnergy;
         Damage = StartDamage;
         Speed = StartSpeed;

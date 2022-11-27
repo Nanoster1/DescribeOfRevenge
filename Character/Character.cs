@@ -34,91 +34,93 @@ public class Character : KinematicBody2D
 
     public override void _PhysicsProcess(float delta)
     {
-
-        if (Input.IsActionPressed("move_left"))
+        if (!(animatedSprite.Animation == "Death"))
         {
-            velocity.x = -CharSystem.Speed;
-            animatedSprite.FlipH = true;
-            timer.Stop();
-            isCalm2 = false;
-        }
-
-        else if (Input.IsActionPressed("move_right"))
-        {
-            velocity.x = CharSystem.Speed;
-            animatedSprite.FlipH = false;
-            timer.Stop();
-            isCalm2 = false;
-        }
-        else
-        {
-            velocity.x = 0;
-            if (!timer.Enabled)
+            if (Input.IsActionPressed("move_left"))
             {
-                timer.Start();
+                velocity.x = -CharSystem.Speed;
+                animatedSprite.FlipH = true;
+                timer.Stop();
+                isCalm2 = false;
             }
 
-        }
-
-        if (Input.IsActionJustPressed("move_up") && IsOnFloor())
-        {
-            velocity.y = -jumpForce;
-            direction = LastDirection.Up;
-            timer.Stop();
-            isCalm2 = false;
-            _play_jump_animation();
-
-        }
-
-        else if (Input.IsActionJustPressed("move_up") && direction == LastDirection.Up)
-        {
-            velocity.y = -jumpForce;
-            direction = null;
-            timer.Stop();
-            isCalm2 = false;
-            _play_jump_animation();
-        }
-        else if (Input.IsActionJustPressed("move_down") && IsOnFloor())
-        {
-            velocity.y = 1;
-            direction = LastDirection.Down;
-            timer.Stop();
-            isCalm2 = false;
-        }
-        if (Input.IsActionJustPressed("attack"))
-        {
-            animatedSprite.Play("Attack");
-            GetNode<AudioStreamPlayer2D>("Attack").Playing = true;
-            isDamage = true;
-            timer.Stop();
-            isCalm2 = false;
-            var attack = ResourceLoader.Load<PackedScene>("res://Character/DamageArea.tscn");
-            Area2D newGround = attack.Instance<Area2D>();
-            GD.Print(Position);
-
-            AddChild(newGround);
-
-            if (animatedSprite.FlipH)
+            else if (Input.IsActionPressed("move_right"))
             {
-                newGround.Position = new Vector2(newGround.Position.x - 50, newGround.Position.y);
+                velocity.x = CharSystem.Speed;
+                animatedSprite.FlipH = false;
+                timer.Stop();
+                isCalm2 = false;
             }
             else
             {
-                newGround.Position = new Vector2(newGround.Position.x + 50, newGround.Position.y);
+                velocity.x = 0;
+                if (!timer.Enabled)
+                {
+                    timer.Start();
+                }
+
             }
-        }
-        else
-        {
-            _play_animation(velocity);
 
-        }
-        if (!GetNode<AudioStreamPlayer2D>("Run").Playing)
-        {
-            GetNode<AudioStreamPlayer2D>("Run").Playing = true;
-        }
+            if (Input.IsActionJustPressed("move_up") && IsOnFloor())
+            {
+                velocity.y = -jumpForce;
+                direction = LastDirection.Up;
+                timer.Stop();
+                isCalm2 = false;
+                _play_jump_animation();
 
-        velocity.y += gravity;
-        velocity = MoveAndSlide(velocity, new Vector2(0, -1));
+            }
+
+            else if (Input.IsActionJustPressed("move_up") && direction == LastDirection.Up)
+            {
+                velocity.y = -jumpForce;
+                direction = null;
+                timer.Stop();
+                isCalm2 = false;
+                _play_jump_animation();
+            }
+            else if (Input.IsActionJustPressed("move_down") && IsOnFloor())
+            {
+                velocity.y = 1;
+                direction = LastDirection.Down;
+                timer.Stop();
+                isCalm2 = false;
+            }
+            if (Input.IsActionJustPressed("attack"))
+            {
+                animatedSprite.Play("Attack");
+                GetNode<AudioStreamPlayer2D>("Attack").Playing = true;
+                isDamage = true;
+                timer.Stop();
+                isCalm2 = false;
+                var attack = ResourceLoader.Load<PackedScene>("res://Character/DamageArea.tscn");
+                Area2D newGround = attack.Instance<Area2D>();
+                GD.Print(Position);
+
+                AddChild(newGround);
+
+                if (animatedSprite.FlipH)
+                {
+                    newGround.Position = new Vector2(newGround.Position.x - 50, newGround.Position.y);
+                }
+                else
+                {
+                    newGround.Position = new Vector2(newGround.Position.x + 50, newGround.Position.y);
+                }
+            }
+            else
+            {
+                _play_animation(velocity);
+
+            }
+            if (!GetNode<AudioStreamPlayer2D>("Run").Playing)
+            {
+                GetNode<AudioStreamPlayer2D>("Run").Playing = true;
+            }
+
+            velocity.y += gravity;
+            velocity = MoveAndSlide(velocity, new Vector2(0, -1));
+        }
     }
     public void _play_jump_animation()
     {
