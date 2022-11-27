@@ -1,0 +1,75 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/project/bgmenu/1.png" type="Texture" id=1]
+[ext_resource path="res://assets/project/bgmenu/3.png" type="Texture" id=2]
+[ext_resource path="res://assets/project/bgmenu/2.png" type="Texture" id=3]
+[ext_resource path="res://assets/project/bgmenu/4.png" type="Texture" id=4]
+[ext_resource path="res://assets/project/bgmenu/5.png" type="Texture" id=5]
+[ext_resource path="res://scenes/gui/Menu/BGCamera2D.gd" type="Script" id=6]
+
+[sub_resource type="ParticlesMaterial" id=1]
+emission_shape = 2
+emission_box_extents = Vector3( 700, 1, 1 )
+flag_disable_z = true
+gravity = Vector3( 5, 98, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 2.0
+color = Color( 1, 1, 1, 0.431373 )
+
+[node name="Node2D" type="CanvasLayer"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0, 1 )
+motion_mirroring = Vector2( 576, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource( 1 )
+centered = false
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.1, 1 )
+motion_mirroring = Vector2( 576, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer2"]
+texture = ExtResource( 3 )
+centered = false
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.6, 1 )
+motion_mirroring = Vector2( 576, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
+texture = ExtResource( 2 )
+centered = false
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.9, 1 )
+motion_mirroring = Vector2( 576, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer4"]
+texture = ExtResource( 4 )
+centered = false
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 576, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer5"]
+texture = ExtResource( 5 )
+centered = false
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 259, 164 )
+current = true
+zoom = Vector2( 0.5, 0.53 )
+script = ExtResource( 6 )
+
+[node name="RainParticles" type="Particles2D" parent="."]
+position = Vector2( 569, -42 )
+amount = 1500
+lifetime = 3.99
+speed_scale = 1.49
+randomness = 0.3
+process_material = SubResource( 1 )

@@ -44,6 +44,7 @@ public class CharacterSystem : Node
         get => _health;
         private set
         {
+            GD.Print("Health changed: " + value);
             var oldHealth = _health;
             _health = Mathf.Clamp(value, MinHealth, MaxHealth);
             EmitSignal(nameof(HealthChanged), oldHealth, _health);
@@ -68,7 +69,7 @@ public class CharacterSystem : Node
 
     public override void _Ready()
     {
-        Health = MaxHealth;
+        Health = 50;
         Energy = MaxEnergy;
         Damage = StartDamage;
         Speed = StartSpeed;
