@@ -38,8 +38,7 @@ public class Character : KinematicBody2D
         if (Input.IsActionPressed("move_left"))
         {
             velocity.x = -CharSystem.Speed;
-
-            Scale = new Vector2(-Scale.x, Scale.y);
+            animatedSprite.FlipH = true;
             timer.Stop();
             isCalm2 = false;
         }
@@ -47,7 +46,7 @@ public class Character : KinematicBody2D
         else if (Input.IsActionPressed("move_right"))
         {
             velocity.x = CharSystem.Speed;
-            Scale = new Vector2(-Scale.x, Scale.y);
+            animatedSprite.FlipH = false;
             timer.Stop();
             isCalm2 = false;
         }
@@ -93,12 +92,20 @@ public class Character : KinematicBody2D
             isDamage = true;
             timer.Stop();
             isCalm2 = false;
-            GD.Print("heloo");
             var attack = ResourceLoader.Load<PackedScene>("res://Character/DamageArea.tscn");
-            GD.Print(attack);
             Area2D newGround = attack.Instance<Area2D>();
-            GD.Print(newGround);
+            GD.Print(Position);
+
             AddChild(newGround);
+
+            if (animatedSprite.FlipH)
+            {
+                newGround.Position = new Vector2(newGround.Position.x - 30, newGround.Position.y);
+            }
+            else
+            {
+                newGround.Position = new Vector2(newGround.Position.x + 30, newGround.Position.y);
+            }
         }
 
         else
