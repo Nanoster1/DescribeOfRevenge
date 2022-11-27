@@ -2,7 +2,7 @@ using Godot;
 
 public class Level1 : Node2D
 {
-    public static int DeathCounter = 0;
+	public static int DeathCounter = 0;
 
     public override void _Ready()
     {
