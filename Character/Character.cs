@@ -91,6 +91,12 @@ public class Character : KinematicBody2D
             isDamage = true;
             timer.Stop();
             isCalm2 = false;
+            GD.Print("heloo");
+            var attack = ResourceLoader.Load<PackedScene>("res://Character/DamageArea.tscn");
+            GD.Print(attack);
+            Area2D newGround = attack.Instance<Area2D>();
+            GD.Print(newGround);
+            AddChild(newGround);
         }
 
         else
@@ -99,8 +105,6 @@ public class Character : KinematicBody2D
         }
         velocity.y += gravity;
         velocity = MoveAndSlide(velocity, new Vector2(0, -1));
-        GD.Print(animatedSprite.Animation);
-        GD.Print("HELLO");
     }
     public void _play_jump_animation()
     {
