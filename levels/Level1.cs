@@ -40,8 +40,8 @@ public class Level1 : Node2D
                 .GetNode<NinePatchRect>("NinePatchRect")
                     .GetNode<NinePatchRect>("HealthHUDBar");
 
-        healthInfo.GetNode<TextureProgress>("TextureProgress").Value = newHealth;
-        healthInfo.GetNode<NinePatchRect>("HealthInfo")
-            .GetNode<Label>("Label2").Text = newHealth.ToString();
-    }
+		healthInfo.GetNode<TextureProgress>("TextureProgress").Value = newHealth;
+		healthInfo.GetNode<NinePatchRect>("HealthInfo")
+			.GetNode<Label>("Label2").Text = newHealth.ToString();
+	}
 }

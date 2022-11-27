@@ -398,9 +398,15 @@ position = Vector2( 34, -7 )
 enabled = true
 cast_to = Vector2( 0, 48 )
 
+[node name="RayCast2D2" type="RayCast2D" parent="."]
+position = Vector2( 25, 16 )
+rotation = 4.71239
+enabled = true
+cast_to = Vector2( 0, 48 )
+
 [node name="PlayerDetector" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 3
+collision_mask = 18
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
 position = Vector2( 44, 16 )
@@ -408,7 +414,7 @@ shape = SubResource( 68 )
 
 [node name="PlayerDetector2" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 3
+collision_mask = 18
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector2"]
 position = Vector2( -31, 17 )
@@ -416,7 +422,7 @@ shape = SubResource( 68 )
 
 [node name="AttackDetector" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 3
+collision_mask = 18
 monitoring = false
 monitorable = false
 

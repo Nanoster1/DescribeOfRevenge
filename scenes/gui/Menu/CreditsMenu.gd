@@ -79,7 +79,7 @@ func _process(delta):
 func finish():
 	if not finished:
 		finished = true
-		get_tree().change_scene("res://scenes/gui/Menu/MainMenu.tscn")
+		get_tree().change_scene("res://scenes/gui/MainMenu.tscn")
 
 
 func add_line():
