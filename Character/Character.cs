@@ -80,10 +80,16 @@ public class Character : KinematicBody2D
             timer.Stop();
             isCalm2 = false;
         }
-        GD.Print(animatedSprite.Animation);
+        if (Input.IsActionJustPressed("attack"))
+        {
+            animatedSprite.Play("Attack");
+        }
+        else
+        {
+            _play_animation(velocity);
+        }
         velocity.y += gravity;
         velocity = MoveAndSlide(velocity, new Vector2(0, -1));
-        _play_animation(velocity);
     }
     public void _play_jump_animation()
     {
