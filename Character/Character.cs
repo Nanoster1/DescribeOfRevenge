@@ -28,6 +28,7 @@ public class Character : KinematicBody2D
         if (animatedSprite.Animation == "Attack")
         {
             isDamage = false;
+            GetNode<AudioStreamPlayer2D>("Attack").Playing = false;
         }
     }
 
@@ -88,6 +89,7 @@ public class Character : KinematicBody2D
         if (Input.IsActionJustPressed("attack"))
         {
             animatedSprite.Play("Attack");
+            GetNode<AudioStreamPlayer2D>("Attack").Playing = true;
             isDamage = true;
             timer.Stop();
             isCalm2 = false;

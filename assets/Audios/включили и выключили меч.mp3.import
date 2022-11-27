@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/включили и выключили меч.mp3-e21d43247e8c42d2051079f8adb1c0cd.mp3str"
+
+[deps]
+
+source_file="res://assets/Audios/включили и выключили меч.mp3"
+dest_files=[ "res://.import/включили и выключили меч.mp3-e21d43247e8c42d2051079f8adb1c0cd.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

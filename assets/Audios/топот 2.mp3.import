@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/топот 2.mp3-78c429a238b32d1ebf2111629a51a604.mp3str"
+
+[deps]
+
+source_file="res://assets/Audios/топот 2.mp3"
+dest_files=[ "res://.import/топот 2.mp3-78c429a238b32d1ebf2111629a51a604.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
