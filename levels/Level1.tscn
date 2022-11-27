@@ -121,4 +121,8 @@ position = Vector2( 2599.75, 215 )
 shape = SubResource( 3 )
 
 [connection signal="health_depleted" from="Enemies/Enemy" to="." method="_on_Enemy_health_depleted"]
+[connection signal="health_depleted" from="Enemies/Enemy2" to="." method="_on_Enemy_health_depleted"]
+[connection signal="health_depleted" from="Enemies/Enemy3" to="." method="_on_Enemy_health_depleted"]
+[connection signal="health_depleted" from="Enemies/Enemy4" to="." method="_on_Enemy_health_depleted"]
+[connection signal="health_depleted" from="Enemies/Enemy5" to="." method="_on_Enemy_health_depleted"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
