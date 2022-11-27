@@ -5,7 +5,7 @@ public class DamageArea : Area2D
     private bool damaged = false;
     public override void _Ready()
     {
-        GetNode<Timer>("Timer").Start(0.2f);
+        GetNode<Timer>("Timer").Start(0.5f);
     }
     public override void _Process(float delta)
     {
@@ -21,6 +21,7 @@ public class DamageArea : Area2D
     public void _on_Timer_timeout()
     {
         GetParent().RemoveChild(this);
+        QueueFree();
     }
     //  // Called ever  y frame. 'delta' is the elapsed time since the previous frame.
     //  public override void _Process(float delta)
