@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://Character/CharacterSystem.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Character/jump.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Character/run.png" type="Texture" id=6]
 [ext_resource path="res://Character/attack.png" type="Texture" id=7]
 [ext_resource path="res://assets/Audios/включили и выключили меч.mp3" type="AudioStream" id=8]
+[ext_resource path="res://assets/Audios/топот 2.mp3" type="AudioStream" id=9]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 7.63243
@@ -146,7 +147,7 @@ animations = [ {
 "frames": [ SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ) ],
 "loop": true,
 "name": "Attack",
-"speed": 6.0
+"speed": 12.0
 }, {
 "frames": [ SubResource( 13 ), SubResource( 17 ), SubResource( 15 ), SubResource( 17 ), SubResource( 16 ), SubResource( 17 ) ],
 "loop": true,
@@ -230,9 +231,15 @@ shape = SubResource( 7 )
 
 [node name="AnimatedSprites" type="AnimatedSprite" parent="."]
 frames = SubResource( 12 )
-animation = "run"
-frame = 5
+animation = "Attack"
+frame = 3
+playing = true
 
 [node name="Attack" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 8 )
 volume_db = 1.0
+
+[node name="Run" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 9 )
+volume_db = 2.0
+autoplay = true

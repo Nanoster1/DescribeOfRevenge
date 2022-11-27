@@ -5,7 +5,7 @@ public class DamageArea : Area2D
     private bool damaged = false;
     public override void _Ready()
     {
-        GetNode<Timer>("Timer").Start(0.5f);
+        GetNode<Timer>("Timer").Start(0.2f);
     }
     public override void _Process(float delta)
     {

@@ -107,44 +107,45 @@ public class Character : KinematicBody2D
                 newGround.Position = new Vector2(newGround.Position.x + 50, newGround.Position.y);
             }
         }
+        else
+        {
+            _play_animation(velocity);
 
-		else
-		{
-			_play_animation(velocity);
-		}
-		velocity.y += gravity;
-		velocity = MoveAndSlide(velocity, new Vector2(0, -1));
-	}
-	public void _play_jump_animation()
-	{
-		if (!isDamage)
-			animatedSprite.Play("jump");
-	}
-	public void _play_animation(Vector2 direction)
-	{
-		if (!isDamage)
-		{
-			if (direction == Vector2.Zero && IsOnFloor())
-			{
-				if (isCalm2)
-				{
-					animatedSprite.Play("calm2");
-				}
-				else
-				{
-					animatedSprite.Play("calm");
-				}
+        }
+        GetNode<AudioStreamPlayer2D>("Run").Playing = true;
+        velocity.y += gravity;
+        velocity = MoveAndSlide(velocity, new Vector2(0, -1));
+    }
+    public void _play_jump_animation()
+    {
+        if (!isDamage)
+            animatedSprite.Play("jump");
+    }
+    public void _play_animation(Vector2 direction)
+    {
+        if (!isDamage)
+        {
+            if (direction == Vector2.Zero && IsOnFloor())
+            {
+                if (isCalm2)
+                {
+                    animatedSprite.Play("calm2");
+                }
+                else
+                {
+                    animatedSprite.Play("calm");
+                }
+            }
+            else if (direction.y > 10)
+            {
+                animatedSprite.Play("down");
+            }
+            else if (direction.y == 0)
+            {
+                animatedSprite.Play("run");
 
-			}
-			else if (direction.y > 10)
-			{
-				animatedSprite.Play("down");
-			}
-			else if (direction.y == 0)
-			{
-				animatedSprite.Play("run");
-			}
-		}
+            }
+        }
 
 	}
 
