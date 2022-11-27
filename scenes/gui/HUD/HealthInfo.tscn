@@ -56,7 +56,7 @@ margin_top = -13.5
 margin_right = -8.0
 margin_bottom = 13.5
 custom_fonts/font = SubResource( 2 )
-text = "50"
+text = "100"
 
 [node name="TextureProgress" type="TextureProgress" parent="."]
 anchor_left = 1.0
@@ -67,6 +67,6 @@ margin_left = -396.0
 margin_top = -26.5
 margin_right = 4.0
 margin_bottom = 26.5
-value = 50.0
+value = 100.0
 texture_under = ExtResource( 3 )
 texture_progress = ExtResource( 4 )
