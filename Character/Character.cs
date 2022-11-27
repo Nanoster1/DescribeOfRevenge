@@ -2,6 +2,8 @@ using Godot;
 
 public class Character : KinematicBody2D
 {
+    [Signal] public delegate void Move(Vector2 velocity, Vector2 position);
+
     public CharacterSystem CharSystem { get; private set; }
     public AnimatedSprite animatedSprite { get; private set; }
     private const float gravity = 15f;
@@ -80,9 +82,9 @@ public class Character : KinematicBody2D
             timer.Stop();
             isCalm2 = false;
         }
-        GD.Print(animatedSprite.Animation);
         velocity.y += gravity;
         velocity = MoveAndSlide(velocity, new Vector2(0, -1));
+        EmitSignal(nameof(Move), velocity, Position);
         _play_animation(velocity);
     }
     public void _play_jump_animation()

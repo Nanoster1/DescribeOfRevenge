@@ -201,3 +201,5 @@ shape = SubResource( 7 )
 [node name="AnimatedSprites" type="AnimatedSprite" parent="."]
 frames = SubResource( 12 )
 animation = "run"
+frame = 3
+playing = true
