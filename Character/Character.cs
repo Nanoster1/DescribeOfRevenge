@@ -28,6 +28,7 @@ public class Character : KinematicBody2D
         if (animatedSprite.Animation == "Attack")
         {
             isDamage = false;
+            GetNode<AudioStreamPlayer2D>("Attack").Playing = false;
         }
     }
 
@@ -42,41 +43,41 @@ public class Character : KinematicBody2D
             isCalm2 = false;
         }
 
-		else if (Input.IsActionPressed("move_right"))
-		{
-			velocity.x = CharSystem.Speed;
-			animatedSprite.FlipH = false;
-			timer.Stop();
-			isCalm2 = false;
-		}
-		else
-		{
-			velocity.x = 0;
-			if (!timer.Enabled)
-			{
-				timer.Start();
-			}
+        else if (Input.IsActionPressed("move_right"))
+        {
+            velocity.x = CharSystem.Speed;
+            animatedSprite.FlipH = false;
+            timer.Stop();
+            isCalm2 = false;
+        }
+        else
+        {
+            velocity.x = 0;
+            if (!timer.Enabled)
+            {
+                timer.Start();
+            }
 
-		}
+        }
 
-		if (Input.IsActionJustPressed("move_up") && IsOnFloor())
-		{
-			velocity.y = -jumpForce;
-			direction = LastDirection.Up;
-			timer.Stop();
-			isCalm2 = false;
-			_play_jump_animation();
+        if (Input.IsActionJustPressed("move_up") && IsOnFloor())
+        {
+            velocity.y = -jumpForce;
+            direction = LastDirection.Up;
+            timer.Stop();
+            isCalm2 = false;
+            _play_jump_animation();
 
-		}
+        }
 
-		else if (Input.IsActionJustPressed("move_up") && direction == LastDirection.Up)
-		{
-			velocity.y = -jumpForce;
-			direction = null;
-			timer.Stop();
-			isCalm2 = false;
-			_play_jump_animation();
-		}
+        else if (Input.IsActionJustPressed("move_up") && direction == LastDirection.Up)
+        {
+            velocity.y = -jumpForce;
+            direction = null;
+            timer.Stop();
+            isCalm2 = false;
+            _play_jump_animation();
+        }
         else if (Input.IsActionJustPressed("move_down") && IsOnFloor())
         {
             velocity.y = 1;
@@ -87,15 +88,24 @@ public class Character : KinematicBody2D
         if (Input.IsActionJustPressed("attack"))
         {
             animatedSprite.Play("Attack");
+            GetNode<AudioStreamPlayer2D>("Attack").Playing = true;
             isDamage = true;
             timer.Stop();
             isCalm2 = false;
-            GD.Print("heloo");
             var attack = ResourceLoader.Load<PackedScene>("res://Character/DamageArea.tscn");
-            GD.Print(attack);
             Area2D newGround = attack.Instance<Area2D>();
-            GD.Print(newGround);
+            GD.Print(Position);
+
             AddChild(newGround);
+
+            if (animatedSprite.FlipH)
+            {
+                newGround.Position = new Vector2(newGround.Position.x - 30, newGround.Position.y);
+            }
+            else
+            {
+                newGround.Position = new Vector2(newGround.Position.x + 30, newGround.Position.y);
+            }
         }
 
         else
@@ -138,16 +148,16 @@ public class Character : KinematicBody2D
 
     }
 
-	protected override void Dispose(bool disposing)
-	{
-		base.Dispose(disposing);
-		timer.Dispose();
-	}
+    protected override void Dispose(bool disposing)
+    {
+        base.Dispose(disposing);
+        timer.Dispose();
+    }
 }
 enum LastDirection
 {
-	Up,
-	Down,
-	Left,
-	Right
+    Up,
+    Down,
+    Left,
+    Right
 }

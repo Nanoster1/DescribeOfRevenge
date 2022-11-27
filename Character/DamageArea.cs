@@ -23,9 +23,4 @@ public class DamageArea : Area2D
         GetParent().RemoveChild(this);
         QueueFree();
     }
-    //  // Called ever  y frame. 'delta' is the elapsed time since the previous frame.
-    //  public override void _Process(float delta)
-    //  {
-    //      
-    //  }
 }
