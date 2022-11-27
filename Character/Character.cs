@@ -100,11 +100,11 @@ public class Character : KinematicBody2D
 
             if (animatedSprite.FlipH)
             {
-                newGround.Position = new Vector2(newGround.Position.x - 30, newGround.Position.y);
+                newGround.Position = new Vector2(newGround.Position.x - 50, newGround.Position.y);
             }
             else
             {
-                newGround.Position = new Vector2(newGround.Position.x + 30, newGround.Position.y);
+                newGround.Position = new Vector2(newGround.Position.x + 50, newGround.Position.y);
             }
         }
 

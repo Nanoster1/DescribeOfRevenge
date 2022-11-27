@@ -13,7 +13,11 @@ public class DamageArea : Area2D
         {
             foreach (var body in GetOverlappingBodies())
             {
-                GD.Print(body.GetType());
+                var enemy = body as KinematicBody2D;
+                if (enemy != null)
+                {
+                    enemy.GetParent().RemoveChild(enemy);
+                }
             }
             damaged = true;
         }
