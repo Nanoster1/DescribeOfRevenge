@@ -38,46 +38,47 @@ public class Character : KinematicBody2D
         if (Input.IsActionPressed("move_left"))
         {
             velocity.x = -CharSystem.Speed;
-            animatedSprite.FlipH = true;
+
+            Scale = new Vector2(-Scale.x, Scale.y);
             timer.Stop();
             isCalm2 = false;
         }
 
-		else if (Input.IsActionPressed("move_right"))
-		{
-			velocity.x = CharSystem.Speed;
-			animatedSprite.FlipH = false;
-			timer.Stop();
-			isCalm2 = false;
-		}
-		else
-		{
-			velocity.x = 0;
-			if (!timer.Enabled)
-			{
-				timer.Start();
-			}
+        else if (Input.IsActionPressed("move_right"))
+        {
+            velocity.x = CharSystem.Speed;
+            Scale = new Vector2(-Scale.x, Scale.y);
+            timer.Stop();
+            isCalm2 = false;
+        }
+        else
+        {
+            velocity.x = 0;
+            if (!timer.Enabled)
+            {
+                timer.Start();
+            }
 
-		}
+        }
 
-		if (Input.IsActionJustPressed("move_up") && IsOnFloor())
-		{
-			velocity.y = -jumpForce;
-			direction = LastDirection.Up;
-			timer.Stop();
-			isCalm2 = false;
-			_play_jump_animation();
+        if (Input.IsActionJustPressed("move_up") && IsOnFloor())
+        {
+            velocity.y = -jumpForce;
+            direction = LastDirection.Up;
+            timer.Stop();
+            isCalm2 = false;
+            _play_jump_animation();
 
-		}
+        }
 
-		else if (Input.IsActionJustPressed("move_up") && direction == LastDirection.Up)
-		{
-			velocity.y = -jumpForce;
-			direction = null;
-			timer.Stop();
-			isCalm2 = false;
-			_play_jump_animation();
-		}
+        else if (Input.IsActionJustPressed("move_up") && direction == LastDirection.Up)
+        {
+            velocity.y = -jumpForce;
+            direction = null;
+            timer.Stop();
+            isCalm2 = false;
+            _play_jump_animation();
+        }
         else if (Input.IsActionJustPressed("move_down") && IsOnFloor())
         {
             velocity.y = 1;
@@ -140,16 +141,16 @@ public class Character : KinematicBody2D
 
     }
 
-	protected override void Dispose(bool disposing)
-	{
-		base.Dispose(disposing);
-		timer.Dispose();
-	}
+    protected override void Dispose(bool disposing)
+    {
+        base.Dispose(disposing);
+        timer.Dispose();
+    }
 }
 enum LastDirection
 {
-	Up,
-	Down,
-	Left,
-	Right
+    Up,
+    Down,
+    Left,
+    Right
 }
