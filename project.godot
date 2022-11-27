@@ -8,6 +8,28 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "BaseCharacterScript",
+"language": "GDScript",
+"path": "res://Script/Players/BaseCharacterScript.gd"
+}, {
+"base": "Node2D",
+"class": "Level",
+"language": "GDScript",
+"path": "res://Script/Level.gd"
+}, {
+"base": "Node",
+"class": "StateMachine",
+"language": "GDScript",
+"path": "res://Script/BaseStateMachine.gd"
+} ]
+_global_script_class_icons={
+"BaseCharacterScript": "",
+"Level": "",
+"StateMachine": ""
+}
+
 [application]
 
 config/name="DescribeOfRevenge"
