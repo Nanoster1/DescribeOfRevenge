@@ -112,4 +112,6 @@ text = "Describe Of Revenge"
 
 [node name="Node" type="Node" parent="."]
 
+[connection signal="pressed" from="ButtonCanvasLayer/MainMenuButtons/NewGameButton" to="." method="OnNewGameButtonPressed"]
+[connection signal="pressed" from="ButtonCanvasLayer/MainMenuButtons/AboutButton" to="." method="_on_AboutButton_pressed"]
 [connection signal="pressed" from="ButtonCanvasLayer/MainMenuButtons/QuitButton" to="." method="_on_QuitButton_pressed"]

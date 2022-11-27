@@ -159,6 +159,9 @@ z_index = 2
 shape = SubResource( 1 )
 
 [node name="CharacterSystem" parent="." instance=ExtResource( 1 )]
+MaxHealth = 100
+MaxEnergy = 100
+StartDamage = 10
 StartSpeed = 300
 
 [node name="RightLag" type="CollisionShape2D" parent="."]
