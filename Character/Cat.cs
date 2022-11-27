@@ -26,12 +26,14 @@ public class Cat : KinematicBody2D
             GetNode<AnimatedSprite>("cats").FlipH = false;
             velocity.x += 2;
         }
-        if (velocity.x >= 100)
+        if (velocity.x >= 70)
         {
+            velocity.x = 0;
             isLeft = true;
         }
-        else if (velocity.x <= -100)
+        else if (velocity.x <= -70)
         {
+            velocity.x = 0;
             isLeft = false;
         }
         velocity = MoveAndSlide(velocity, new Vector2(0, -1));
